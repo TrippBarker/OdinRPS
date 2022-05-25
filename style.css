@@ -4,3 +4,22 @@
 body {
     background-color: aqua;
 }
+
+#playfield {
+    display: flex;
+    justify-content: center;
+}
+
+.playbox {
+    width: 750px;
+    height: 400px;
+    background-color: palevioletred;
+}
+
+.hideGif {
+    display: none;
+}
+
+.disableBtn {
+    pointer-events: none;
+}
