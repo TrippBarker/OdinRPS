@@ -1,8 +1,9 @@
-const weapons = ['rock', 'paper', 'scissors'];
+const weapons = ['jump', 'kick', 'punch'];
 let playGame = true;
 const btns = document.querySelectorAll('button');
 const ssGif = document.querySelector('#ss');
 const bjGif = document.querySelector('#bj');
+const bkGif = document.querySelector('#bk');
 
 function computerWep(){
     return Math.round(Math.random() * 2);
@@ -11,21 +12,17 @@ function computerWep(){
 function playRound(e){
     compWep = weapons[computerWep()];
     humWep = this.id;
-        if (humWep === compWep){
-            console.log(`Both Comp and Human selected ${compWep}. It's a tie!`)
+        if(humWep === 'jump' && compWep === 'jump'){
             runGif(ssGif, bjGif);
-
-        } else if (
-            humWep === 'rock' && compWep === 'scissors' ||
-            humWep === 'paper' && compWep === 'rock' ||
-            humWep === 'scissors' && compWep === 'paper'){
-                console.log(`Computer chose ${compWep} and human chose ${humWep}, human wins!`);
+        } else if(humWep === 'kick' && compWep === 'kick'){
+            runGif(ssGif, bkGif);
         } else {
             console.log(`Computer chose ${compWep} and human chose ${humWep}, computer wins!`);
         }
 }
 
 function runGif(gif1, gif2){
+    gif2.src = gif2.src+"?a="+Math.random();
     gif1.classList.toggle('hideGif');
     gif2.classList.toggle('hideGif');
     btns.forEach(button => button.classList.toggle('disableBtn'));
