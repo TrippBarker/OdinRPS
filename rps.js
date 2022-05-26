@@ -7,6 +7,8 @@ const bkGif = document.querySelector('#bk');
 const bpGif = document.querySelector('#bp');
 const ljrkGif = document.querySelector('#ljrk')
 const ljrpGif = document.querySelector('#ljrp')
+const lkrjGif = document.querySelector('#lkrj')
+const lkrpGif = document.querySelector('#lkrp')
 
 
 function computerWep(){
@@ -26,6 +28,10 @@ function playRound(e){
             runGif(ssGif, ljrkGif);
         } else if (humWep === 'jump' && compWep === 'punch'){
             runGif(ssGif, ljrpGif)
+        } else if (humWep === 'kick' && compWep === 'jump'){
+            runGif(ssGif, lkrjGif);
+        } else if (humWep === 'kick' && compWep === 'punch'){
+            runGif(ssGif, lkrpGif);
         } else {
             console.log(`Computer chose ${compWep} and human chose ${humWep}, computer wins!`);
         }
