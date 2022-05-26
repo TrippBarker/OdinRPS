@@ -7,12 +7,21 @@ body {
     background-color: #00ffff;
 }
 
+h1 {
+    font-size: 75px;
+    margin: 0;
+}
+
 #playfield {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 50px;
+}
+
+#yes, #no {
+    margin-top: 10px;
 }
 
 .playbox {
