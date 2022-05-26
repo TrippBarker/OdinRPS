@@ -8,6 +8,8 @@
 <body>
     <div id="playfield">
         <div class="playbox">
+            <!-- Gif animations for each possible move -->
+            <!-- All animations are hidden initially except for the starting stance -->
             <img src="./Inkscape Files/Starting Stance/ss.gif" alt="" id="ss">
             <img src="./Inkscape Files/Both Jump/bj.gif" alt="" id="bj" class="hideGif">
             <img src="./Inkscape Files/Both Kick/bk.gif" alt="" id="bk" class="hideGif">
@@ -22,20 +24,22 @@
             <img src="./Inkscape Files/BDown/BDown.gif" alt="" id="bdown" class="hideGif">
             <img src="./Inkscape Files/RLose/RLose.gif" alt="" id="rlose" class="hideGif">
             <img src="./Inkscape Files/RDown/RDown.gif" alt="" id="rdown" class="hideGif">
+            <!-- Scoreboard display results of game -->
             <div id="scoreboard">
                 <div class="scorecard" id="blueScore">BLUE: 0</div>
                 <div class="scorecard" id="tieScore">TIE: 0</div>
                 <div class="scorecard" id="redScore">RED: 0</div>
             </div>
         </div>
+        <!-- This h1 tag is changed to display the winner after a game concludes -->
         <h1 id="playAgain">BLUE V. RED</h1>
     </div>
+    <!-- buttons for user input (play again button is hidden until game is over)-->
     <div id="buttons">
         <button id="jump"><img src="./images/jumpIcon.png" alt="" class="icon">JUMP</button>
         <button id="kick"><img src="./images/kickIcon.png" alt="" class="icon">KICK</button>
         <button id="punch"><img src="./images/punchIcon.png" alt="" class="icon">PUNCH</button>
-        <button id="yes" class="hideGif">YES</button>
-        <button id="no" class="hideGif">NO</button>
+        <button id="play" class="hideGif">PLAY AGAIN</button>
     </div>
     <script src="./rps.js"></script>
 </body>

@@ -1,3 +1,5 @@
+// Variables and GIFs
+
 const weapons = ['jump', 'kick', 'punch'];
 let playGame = true;
 const btns = document.querySelectorAll('button');
@@ -24,13 +26,17 @@ let tieScore = 0;
 let compScore = 0;
 let playingGif = ssGif;
 
+// function generates a random number between 0 and 2 (inclusive) to select a weapon from the weapons array
 function computerWep(){
     return Math.round(Math.random() * 2);
 }
 
+// function plays a round when user clicks a button
 function playRound(e){
     compWep = weapons[computerWep()];
     humWep = this.id;
+    // rock, paper scissors logic.
+    // jump beats kick, kick beats punch, punch beats jump
     if(humWep === 'jump' && compWep === 'jump'){
         tieScore++;
         runGif(ssGif, bjGif);
@@ -58,7 +64,7 @@ function playRound(e){
     } else if (humWep === 'punch' && compWep === 'jump'){
         humScore++;
         runGif(ssGif, lprjGif);
-    } else if (humWep === 'yes'){
+    } else if (humWep === 'play'){
         humScore = 0;
         tieScore = 0;
         compScore = 0;
@@ -67,13 +73,10 @@ function playRound(e){
         playingGif.classList.toggle('hideGif');
         ssGif.classList.toggle('hideGif');
         runGif(ssGif, ssGif)
-    } else if (humWep === 'no'){
-        btns.forEach(button => button.classList.add('hideGif'));
-        btns.forEach(button => button.classList.toggle('hideGif'));
-        playAgainMsg.textContent = 'BYE!';
     } else {
         console.log("Something happened that I did not predict!");
     }
+    // If a player is at 5 points run gameEnd function
     if(humScore === 5){
         gameEnd('BLUE');
     } else if(compScore === 5){
@@ -81,41 +84,54 @@ function playRound(e){
     }
 }
 
+// function called to run appropriate gif for game scenario
 function runGif(gif1, gif2){
+    // this line ticks the browser into restarting the gif - reloads gif to page so gif should be small
     gif2.src = gif2.src+"?a="+Math.random();
+    // toggle between currently playing gif and gif that should be played
     gif1.classList.toggle('hideGif');
     gif2.classList.toggle('hideGif');
+    // disable buttons so user cannot spam input
     btns.forEach(button => button.classList.toggle('disableBtn'));
-    setTimeout(() => 
-    {gif1.classList.toggle('hideGif'); 
-    gif2.classList.toggle('hideGif'); 
-    btns.forEach(button => button.classList.toggle('disableBtn'));if (humScore === 5){
-        runKnockOut(rloseGif, rdownGif);
-    }
-    if (compScore === 5){
-        runKnockOut(bloseGif, bdownGif)
-    }}, 980);
+    // setTimeout to stop JS from running while gif plays.
+    setTimeout(() => {
+        gif1.classList.toggle('hideGif'); 
+        gif2.classList.toggle('hideGif'); 
+        btns.forEach(button => button.classList.toggle('disableBtn'));
+        if (humScore === 5){
+            runKnockOut(rloseGif, rdownGif);
+        }
+        if (compScore === 5){
+            runKnockOut(bloseGif, bdownGif)
+        }}, 980);
     human.textContent = `BLUE: ${humScore}`;
     tie.textContent = `TIE: ${tieScore}`;
     computer.textContent = `RED: ${compScore}`;
 }
 
+// Plays the knock-out gif once a player reaches 5 wins
 function runKnockOut(gif1, gif2){
+    // store the gif2 as 'playingGif' so that is can be turned off later - if user wants to play again
     playingGif = gif2;
+    // these lines tick the browser into restarting the gif - reloads gif to page so gif should be small
     gif1.src = gif1.src+"?a="+Math.random();
     gif2.src = gif2.src+"?a="+Math.random();
+    // toggle between starting stance gif and knock-out gif
     ssGif.classList.toggle('hideGif');
     gif1.classList.toggle('hideGif');
+    // disable buttons while gif plays to prevent input spamming
     btns.forEach(button => button.classList.toggle('disableBtn'));
-    setTimeout(() => 
-    {gif1.classList.toggle('hideGif'); 
-    gif2.classList.toggle('hideGif'); 
-    btns.forEach(button => button.classList.toggle('disableBtn'));}, 560);
+    setTimeout(() => { 
+        gif1.classList.toggle('hideGif'); 
+        gif2.classList.toggle('hideGif'); 
+        btns.forEach(button => button.classList.toggle('disableBtn'));}, 560);
 }
 
+// function called once a player reaches 5 wins
 function gameEnd(winner){
-    playAgainMsg.textContent = `${winner} wins! Play Again?`;
+    playAgainMsg.textContent = `${winner} wins!!`;
     btns.forEach(button => button.classList.toggle('hideGif'));
 }
 
+// event listeners for all the buttons
 btns.forEach(button => button.addEventListener('click', playRound));
