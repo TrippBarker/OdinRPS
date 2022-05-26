@@ -14,6 +14,7 @@ body {
     width: 750px;
     height: 400px;
     background-color: palevioletred;
+    border-radius: 50px;
 }
 
 .hideGif {
@@ -22,4 +23,35 @@ body {
 
 .disableBtn {
     pointer-events: none;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: palevioletred;
+    width: 150px;
+    height: 150px;
+    border: 0px;
+    border-radius: 50px;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    border: 5px solid #006cdf;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #e993b0;
+}
+
+.icon {
+    margin-bottom: 20px;
 }
