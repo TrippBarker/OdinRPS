@@ -11,6 +11,10 @@ const lkrjGif = document.querySelector('#lkrj')
 const lkrpGif = document.querySelector('#lkrp')
 const lprkGif = document.querySelector('#lprk')
 const lprjGif = document.querySelector('#lprj')
+const bloseGif = document.querySelector('#blose');
+const bdownGif = document.querySelector('#bdown');
+const rloseGif = document.querySelector('#rlose');
+const rdownGif = document.querySelector('#rdown');
 const playAgainMsg = document.querySelector('#playAgain');
 const human = document.querySelector('#blueScore');
 const tie = document.querySelector('#tieScore');
@@ -18,6 +22,7 @@ const computer = document.querySelector('#redScore');
 let humScore = 0;
 let tieScore = 0;
 let compScore = 0;
+let playingGif = ssGif;
 
 function computerWep(){
     return Math.round(Math.random() * 2);
@@ -57,11 +62,15 @@ function playRound(e){
         humScore = 0;
         tieScore = 0;
         compScore = 0;
+        playAgainMsg.textContent = 'BLUE V. RED';
         btns.forEach(button => button.classList.toggle('hideGif'));
-        runGif(ssGif, ssGif);
+        playingGif.classList.toggle('hideGif');
+        ssGif.classList.toggle('hideGif');
+        runGif(ssGif, ssGif)
     } else if (humWep === 'no'){
         btns.forEach(button => button.classList.add('hideGif'));
         btns.forEach(button => button.classList.toggle('hideGif'));
+        playAgainMsg.textContent = 'BYE!';
     } else {
         console.log("Something happened that I did not predict!");
     }
@@ -80,16 +89,32 @@ function runGif(gif1, gif2){
     setTimeout(() => 
     {gif1.classList.toggle('hideGif'); 
     gif2.classList.toggle('hideGif'); 
-    btns.forEach(button => button.classList.toggle('disableBtn'));}, 980);
+    btns.forEach(button => button.classList.toggle('disableBtn'));if (humScore === 5){
+        runKnockOut(rloseGif, rdownGif);
+    }
+    if (compScore === 5){
+        runKnockOut(bloseGif, bdownGif)
+    }}, 980);
     human.textContent = `BLUE: ${humScore}`;
     tie.textContent = `TIE: ${tieScore}`;
     computer.textContent = `RED: ${compScore}`;
+}
 
+function runKnockOut(gif1, gif2){
+    playingGif = gif2;
+    gif1.src = gif1.src+"?a="+Math.random();
+    gif2.src = gif2.src+"?a="+Math.random();
+    ssGif.classList.toggle('hideGif');
+    gif1.classList.toggle('hideGif');
+    btns.forEach(button => button.classList.toggle('disableBtn'));
+    setTimeout(() => 
+    {gif1.classList.toggle('hideGif'); 
+    gif2.classList.toggle('hideGif'); 
+    btns.forEach(button => button.classList.toggle('disableBtn'));}, 560);
 }
 
 function gameEnd(winner){
     playAgainMsg.textContent = `${winner} wins! Play Again?`;
-    playAgainMsg.classList.toggle('hideGif');
     btns.forEach(button => button.classList.toggle('hideGif'));
 }
 
