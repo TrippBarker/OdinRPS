@@ -1,20 +1,43 @@
 * {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 25px;
 }
 
 body {
-    background-color: aqua;
+    background-color: #00ffff;
 }
 
 #playfield {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
 }
 
 .playbox {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 750px;
-    height: 400px;
-    background-color: palevioletred;
+    height: 450px;
+    background-color: #d87093;
     border-radius: 50px;
+}
+
+#scoreboard {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#blueScore {
+    margin-left: 150px;
+}
+
+#redScore {
+    margin-right: 150px;
 }
 
 .hideGif {
@@ -31,7 +54,7 @@ body {
 }
 
 button {
-    background-color: palevioletred;
+    background-color: #d87093;
     width: 150px;
     height: 150px;
     border: 0px;
@@ -53,5 +76,5 @@ button:active {
 }
 
 .icon {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
